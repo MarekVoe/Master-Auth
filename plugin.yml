@@ -1,0 +1,7 @@
+name: MasterAuth
+version: 1.0
+main: me.mastergamercz.masterauth.Main
+author: mastergamerCz
+commands:
+  connect:
+    description: Connect to server command
