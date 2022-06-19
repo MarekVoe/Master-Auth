@@ -6,7 +6,6 @@ import me.mastergamercz.masterauth.listeners.PluginChannelListener;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
 
 import java.util.ArrayList;
 import java.util.UUID;

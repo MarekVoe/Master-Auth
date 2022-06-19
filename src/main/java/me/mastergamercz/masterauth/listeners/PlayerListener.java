@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -40,7 +41,20 @@ public class PlayerListener implements Listener {
             plugin.getConfig().set("authcodes." + player.getUniqueId(), key.getKey());
             plugin.saveConfig();
         } else {
+            player.sendMessage(plugin.getPrefix() + ChatColor.RED + "Please authenticate.");
             plugin.getAuthLocked().add(player.getUniqueId());
+        }
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent e) {
+        Player player = e.getPlayer();
+        if (plugin.getAuthLocked().contains(player.getUniqueId())) {
+           player.sendMessage(plugin.getPrefix() + ChatColor.RED + "Cannot process command, until you are authenticated !");
+            System.out.println("DEBUG 1");
+           e.setCancelled(true);
+        } else {
+            System.out.println("DEBUG 2");
         }
     }
 
